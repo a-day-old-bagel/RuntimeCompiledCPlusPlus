@@ -114,6 +114,18 @@ bool RuntimeObjectSystem::Initialise( ICompilerLogger * pLogger, SystemTable* pS
 	AddIncludeDir(includeDir.c_str());
 	std::ifstream ifstream;
 	ifstream.open("RCC_Config.txt");
+	if (!ifstream.is_open())
+	{
+#if _DEBUG
+		ifstream.open("../Debug/RCC_Config.txt");
+#else
+		ifstream.open("../Release/RCC_Config.txt");
+		if (!ifstream.is_open())
+		{
+			ifstream.open("../RelWithDebInfo/RCC_Config.txt");
+		}
+#endif
+	}
 	if (ifstream.is_open())
 	{
 		std::string includes;
@@ -136,6 +148,10 @@ bool RuntimeObjectSystem::Initialise( ICompilerLogger * pLogger, SystemTable* pS
 			prevPos = pos + 1;
 			pos = link_dirs.find_first_of(';', pos + 1);
 		}
+	}
+	else
+	{
+		std::cout << "Unable to open RCC_config.txt" << std::endl;
 	}
 	return true;
 }
