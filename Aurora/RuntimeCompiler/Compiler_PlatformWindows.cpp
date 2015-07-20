@@ -297,9 +297,9 @@ void Compiler::RunCompile(	const std::vector<FileSystemUtils::Path>&	filesToComp
 	m_pImplData->m_bCompileIsComplete = false;
 	//optimization and c runtime
 #ifdef _DEBUG
-	std::string flags = "/nologo /Zi /FC /MDd /LDd ";
+	std::string flags = "/Zi /FC /MDd /LDd ";
 #else
-	std::string flags = "/nologo /Zi /FC /MD /LD ";	//also need debug information in release
+	std::string flags = "/Zi /FC /MD /LD ";	//also need debug information in release
 #endif
 
 	RCppOptimizationLevel optimizationLevel = GetActualOptimizationLevel( compilerOptions_.optimizationLevel );

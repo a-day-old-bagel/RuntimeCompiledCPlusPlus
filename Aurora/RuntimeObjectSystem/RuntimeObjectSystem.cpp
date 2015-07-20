@@ -119,10 +119,11 @@ bool RuntimeObjectSystem::Initialise( ICompilerLogger * pLogger, SystemTable* pS
 #if _DEBUG
 		ifstream.open("../Debug/RCC_Config.txt");
 #else
-		ifstream.open("../Release/RCC_Config.txt");
+		
+		ifstream.open("../RelWithDebInfo/RCC_Config.txt");
 		if (!ifstream.is_open())
 		{
-			ifstream.open("../RelWithDebInfo/RCC_Config.txt");
+			ifstream.open("../Release/RCC_Config.txt");
 		}
 #endif
 	}
